@@ -1,5 +1,5 @@
 import { SectionHeading } from "../sectionHeading";
-import RevealSection from "@/components/ui/reveal-section";
+import RevealSection from "@/components/ui/RevealSection";
 import { education } from "@/data/education";
 import { Education } from "@/data/portfolioTypes";
 import { EducationCard } from "./EducationCard";

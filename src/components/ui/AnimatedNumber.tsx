@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { PortfolioStat } from "@/data/portfolioTypes";
 
-function AnimatedNumber({ value, suffix }) {
-  const [displayValue, setDisplayValue] = useState(0);
+type AnimatedNumberProps = {
+  value: number;
+  suffix: string;
+};
+
+function AnimatedNumber({ value, suffix }: AnimatedNumberProps) {
+  const [displayValue, setDisplayValue] = useState<number>(0);
 
   useEffect(() => {
     let frame = 0;
@@ -33,10 +39,14 @@ function AnimatedNumber({ value, suffix }) {
   );
 }
 
-export default function PortfolioStats({ stats }) {
+type Props = {
+  stats: PortfolioStat[];
+};
+
+export default function PortfolioStats({ stats }: Props) {
   return (
     <div className="grid gap-4 min-[480px]:grid-cols-2 sm:grid-cols-3">
-      {stats.map((stat) => (
+      {stats.map((stat: PortfolioStat) => (
         <div
           key={stat.label}
           className="rounded-[1.75rem] border border-white/70 bg-white/85 p-5 shadow-sm shadow-slate-200/70"

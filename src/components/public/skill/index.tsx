@@ -1,4 +1,4 @@
-import RevealSection from "@/components/ui/reveal-section";
+import RevealSection from "@/components/ui/RevealSection";
 import { skillsStackGroups } from "@/data/skills";
 import { SkillGroup as TSkillGroup } from "@/data/portfolioTypes";
 import { SkillGroup } from "./SkillGroup";

@@ -1,22 +1,26 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { ElementType, ReactNode, useEffect, useRef, useState } from "react";
+
+type Props = {
+  as?: ElementType;
+  className?: string;
+  delay?: number;
+  children: ReactNode;
+};
 
 export default function RevealSection({
   as: Tag = "div",
   className = "",
   delay = 0,
   children,
-}) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+}: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const node = ref.current;
-
-    if (!node) {
-      return undefined;
-    }
+    if (!node) return undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -28,11 +32,10 @@ export default function RevealSection({
       {
         threshold: 0.18,
         rootMargin: "0px 0px -8% 0px",
-      }
+      },
     );
 
     observer.observe(node);
-
     return () => observer.disconnect();
   }, []);
 

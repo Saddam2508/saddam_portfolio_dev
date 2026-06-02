@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 const LOADER_DURATION_MS = 2200;
 
 export default function IntroLoader() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isLeaving, setIsLeaving] = useState(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [isLeaving, setIsLeaving] = useState<boolean>(false);
 
   useEffect(() => {
     document.body.classList.add("intro-loader-active");
@@ -27,9 +27,7 @@ export default function IntroLoader() {
     };
   }, []);
 
-  if (!isVisible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
     <div

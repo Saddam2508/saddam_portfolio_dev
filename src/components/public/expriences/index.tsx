@@ -1,5 +1,5 @@
 import { SectionHeading } from "../sectionHeading";
-import RevealSection from "@/components/ui/reveal-section";
+import RevealSection from "@/components/ui/RevealSection";
 import { experience } from "@/data/experience";
 import { Experience } from "@/data/portfolioTypes";
 import { ExperienceCard } from "./ExperienceCard";

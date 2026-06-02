@@ -1,5 +1,5 @@
 import { AboutIcon } from "./AboutIcon";
-import RevealSection from "@/components/ui/reveal-section";
+import RevealSection from "@/components/ui/RevealSection";
 import { techStackShowcase } from "@/data/techStack";
 import { TechStackItem } from "./aboutMeTypes";
 

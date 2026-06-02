@@ -1,5 +1,5 @@
 import Link from "next/link";
-import RevealSection from "@/components/ui/reveal-section";
+import RevealSection from "@/components/ui/RevealSection";
 import { profile } from "@/data/portfolio";
 import { contact } from "@/data/contact";
 import { socialLinks } from "@/data/socialLinks";

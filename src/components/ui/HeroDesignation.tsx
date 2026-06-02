@@ -2,13 +2,16 @@
 
 import { useEffect, useState } from "react";
 
-export default function HeroDesignation({ items, fallback }) {
-  const [index, setIndex] = useState(0);
+type Props = {
+  items: string[];
+  fallback: string;
+};
+
+export default function HeroDesignation({ items, fallback }: Props) {
+  const [index, setIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (!items?.length) {
-      return undefined;
-    }
+    if (!items?.length) return undefined;
 
     const timer = window.setInterval(() => {
       setIndex((current) => (current + 1) % items.length);

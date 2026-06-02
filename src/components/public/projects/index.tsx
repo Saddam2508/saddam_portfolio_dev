@@ -1,6 +1,6 @@
-import ProjectGrid from "@/components/ui/project-grid";
+import ProjectGrid from "@/components/ui/ProjectGrid";
 import { SectionHeading } from "../sectionHeading";
-import RevealSection from "@/components/ui/reveal-section";
+import RevealSection from "@/components/ui/RevealSection";
 import { projects } from "@/data/projects";
 import { Project } from "@/data/portfolioTypes";
 

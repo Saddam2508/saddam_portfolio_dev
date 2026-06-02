@@ -1,7 +1,7 @@
-import CustomCursor from "@/components/ui/custom-cursor";
-import IntroLoader from "@/components/ui/intro-loader";
-import ScrollTopButton from "@/components/ui/scroll-top-button";
-import ThemeToggle from "@/components/ui/theme-toggle";
+import CustomCursor from "@/components/ui/CustomCursor";
+import IntroLoader from "@/components/ui/IntroLoader";
+import ScrollTopButton from "@/components/ui/ScrollTopButton";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import Navbar from "@/components/public/navbar";
 
 export default function PublicLayout({

@@ -1,7 +1,7 @@
-import RevealSection from "@/components/ui/reveal-section";
+import RevealSection from "@/components/ui/RevealSection";
 import { SectionHeading } from "../sectionHeading";
 import { AboutIcon } from "../aboutMe/AboutIcon";
-import { OrbitingCircles } from "@/components/ui/orbiting-circles";
+import { OrbitingCircles } from "@/components/ui/OrbitingCircles";
 import { profile } from "@/data/portfolio";
 import { orbitIcons } from "./orbitIcons";
 

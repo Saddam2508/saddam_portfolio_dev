@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 export default function ScrollTopButton() {
-  const [progress, setProgress] = useState(0);
-  const [visible, setVisible] = useState(false);
+  const [progress, setProgress] = useState<number>(0);
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -33,7 +33,9 @@ export default function ScrollTopButton() {
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Scroll to top"
       className={`scroll-top-shell ${visible ? "is-visible" : ""}`}
-      style={{ "--scroll-progress": `${progress * 360}deg` }}
+      style={
+        { "--scroll-progress": `${progress * 360}deg` } as React.CSSProperties
+      }
     >
       <span className="scroll-top-inner">
         <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">

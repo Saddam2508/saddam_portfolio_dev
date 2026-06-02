@@ -1,5 +1,5 @@
 import { SectionHeading } from "../sectionHeading";
-import RevealSection from "@/components/ui/reveal-section";
+import RevealSection from "@/components/ui/RevealSection";
 import { services } from "@/data/services";
 import { ServiceCard } from "./ServiceCard";
 
