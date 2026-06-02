@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroDesignation from "@/components/ui/hero-designation";
 import PortfolioStats from "@/components/ui/portfolio-stats";
-import { portfolioStats, profile, socialLinks } from "@/data/portfolio";
+import { profile } from "@/data/portfolio";
+import { socialLinks } from "@/data/socialLinks";
+import { portfolioStats } from "@/data/stats";
 
 export function Hero() {
   return (

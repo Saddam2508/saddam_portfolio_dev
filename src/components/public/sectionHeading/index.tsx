@@ -1,4 +1,10 @@
-export function SectionHeading({ eyebrow, title, description }) {
+type Props = {
+  eyebrow: string;
+  title: string;
+  description: string;
+};
+
+export function SectionHeading({ eyebrow, title, description }: Props) {
   return (
     <div className="max-w-2xl space-y-3">
       <p className="text-sm font-mono uppercase tracking-[0.3em] text-[var(--color-accent)]">
