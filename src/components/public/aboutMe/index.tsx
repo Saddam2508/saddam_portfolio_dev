@@ -1,6 +1,7 @@
 import { AboutIcon } from "./AboutIcon";
 import RevealSection from "@/components/ui/reveal-section";
-import { techStackShowcase } from "@/data/portfolio";
+import { techStackShowcase } from "@/data/techStack";
+import { TechStackItem } from "./aboutMeTypes";
 
 export function TechStackSection() {
   return (
@@ -16,7 +17,7 @@ export function TechStackSection() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {techStackShowcase.map((item) => (
+          {techStackShowcase.map((item: TechStackItem) => (
             <article
               key={item.name}
               className="stack-card stack-card-tile flex min-h-32 items-center justify-center rounded-[1.5rem] border p-6 text-center"

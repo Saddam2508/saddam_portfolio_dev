@@ -1,45 +1,39 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
-import { useFormStatus } from "react-dom";
 import { sendContactMessage } from "@/app/actions";
+import { FormState } from "./contactTypes";
+import { SubmitButton } from "./SubmitButton";
 
-const initialState = {
+const initialState: FormState = {
   status: "idle",
   message: "",
 };
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="button-hover-soft theme-outline-button inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-70"
-    >
-      {pending ? "Sending..." : "Send Message"}
-    </button>
-  );
-}
-
 export default function ContactForm() {
   const [state, formAction] = useActionState(sendContactMessage, initialState);
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
   const isSuccess = state.status === "success";
   const isError = state.status === "error";
 
   useEffect(() => {
-    if (state.status === "success") {
+    if (isSuccess) {
       formRef.current?.reset();
     }
-  }, [state.status]);
+  }, [isSuccess]);
 
   return (
-    <form ref={formRef} action={formAction} className="flex h-full flex-col gap-5">
+    <form
+      ref={formRef}
+      action={formAction}
+      className="flex h-full flex-col gap-5"
+    >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2">
-          <span className="contact-input-label text-sm font-medium">Your Name</span>
+          <span className="contact-input-label text-sm font-medium">
+            Your Name
+          </span>
           <input
             type="text"
             name="name"
@@ -50,7 +44,9 @@ export default function ContactForm() {
           />
         </label>
         <label className="grid gap-2">
-          <span className="contact-input-label text-sm font-medium">Your Email</span>
+          <span className="contact-input-label text-sm font-medium">
+            Your Email
+          </span>
           <input
             type="email"
             name="email"
@@ -78,7 +74,7 @@ export default function ContactForm() {
         <span className="contact-input-label text-sm font-medium">Message</span>
         <textarea
           name="message"
-          rows="10"
+          rows={10}
           required
           className="contact-input min-h-[13rem] flex-1 rounded-[1.5rem] border px-4 py-3 text-sm outline-none transition sm:min-h-[16rem] lg:min-h-[18rem]"
           placeholder="Write your message here..."
@@ -86,16 +82,14 @@ export default function ContactForm() {
       </label>
 
       <div className="contact-form-footer flex flex-col gap-3 pt-3 sm:flex-row sm:items-center sm:justify-end">
-        {state.message ? (
+        {state.message && (
           <p
-            className={`text-sm sm:mr-auto ${
-              isError ? "text-rose-300" : "text-emerald-300"
-            }`}
+            className={`text-sm sm:mr-auto ${isError ? "text-rose-300" : "text-emerald-300"}`}
             aria-live="polite"
           >
             {state.message}
           </p>
-        ) : null}
+        )}
         <div className="sm:ml-auto">
           <SubmitButton />
         </div>

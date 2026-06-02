@@ -1,14 +1,11 @@
 "use server";
 
 import nodemailer from "nodemailer";
+import { FormState } from "@/components/public/contact/contactTypes";
 
-type ActionState = {
-  status: "success" | "error";
-  message: string;
-};
+// ✅ ActionState সরিয়ে FormState import করা হয়েছে
 
 const REQUIRED_FIELDS = ["name", "email", "subject", "message"] as const;
-
 type FieldKey = (typeof REQUIRED_FIELDS)[number];
 
 function getTrimmedValue(formData: FormData, key: FieldKey): string {
@@ -23,24 +20,18 @@ function validateEmail(email: string): boolean {
 function getTransport(): nodemailer.Transporter | null {
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-
-  if (!user || !pass) {
-    return null;
-  }
+  if (!user || !pass) return null;
 
   return nodemailer.createTransport({
     service: "gmail",
-    auth: {
-      user,
-      pass,
-    },
+    auth: { user, pass },
   });
 }
 
 export async function sendContactMessage(
-  _: ActionState | null,
+  _: FormState | null,
   formData: FormData,
-): Promise<ActionState> {
+): Promise<FormState> {
   const values = Object.fromEntries(
     REQUIRED_FIELDS.map((field) => [field, getTrimmedValue(formData, field)]),
   ) as Record<FieldKey, string>;
@@ -53,10 +44,7 @@ export async function sendContactMessage(
   }
 
   if (!validateEmail(values.email)) {
-    return {
-      status: "error",
-      message: "Please enter a valid email address.",
-    };
+    return { status: "error", message: "Please enter a valid email address." };
   }
 
   const transporter = getTransport();
@@ -102,7 +90,6 @@ export async function sendContactMessage(
     };
   } catch (error) {
     console.error("Contact form email failed:", error);
-
     return {
       status: "error",
       message:

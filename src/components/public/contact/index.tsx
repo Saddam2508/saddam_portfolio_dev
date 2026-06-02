@@ -1,10 +1,13 @@
+import Link from "next/link";
 import RevealSection from "@/components/ui/reveal-section";
-import { contact, profile, socialLinks } from "@/data/portfolio";
-import ContactForm from "./contact-form";
+import { profile } from "@/data/portfolio";
+import { contact } from "@/data/contact";
+import { socialLinks } from "@/data/socialLinks";
+import ContactForm from "./ContactForm";
+import { SocialIcon } from "./SocialIcon";
+import { ContactIconType } from "./contactTypes";
 
 export function ContactSection() {
-  const findMeLinks = socialLinks.filter(Boolean);
-
   return (
     <section
       id="contact"
@@ -14,6 +17,7 @@ export function ContactSection() {
         <div className="contact-shell relative overflow-hidden rounded-[2.75rem] border border-slate-200 shadow-[0_30px_100px_rgba(15,23,42,0.14)]">
           <div className="contact-orb contact-orb-one pointer-events-none absolute -left-10 top-10 h-48 w-48 rounded-full" />
           <div className="contact-orb contact-orb-two pointer-events-none absolute bottom-0 right-0 h-56 w-56 rounded-full" />
+
           <div className="relative grid gap-8 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[0.82fr_1.18fr] lg:px-12 lg:py-14">
             <div className="contact-story space-y-6">
               <div className="space-y-2">
@@ -39,6 +43,7 @@ export function ContactSection() {
                 </p>
 
                 <div className="space-y-4 text-base text-slate-700 sm:text-lg">
+                  {/* Location */}
                   <p className="flex items-center gap-3">
                     <span
                       className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[var(--color-accent)] shadow-sm shadow-slate-200/60"
@@ -65,6 +70,8 @@ export function ContactSection() {
                     </span>
                     <span>{contact.location}</span>
                   </p>
+
+                  {/* Phone */}
                   <p className="flex items-center gap-3">
                     <span
                       className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[var(--color-accent)] shadow-sm shadow-slate-200/60"
@@ -80,13 +87,15 @@ export function ContactSection() {
                         />
                       </svg>
                     </span>
-                    <a
+                    <Link
                       href={`tel:${contact.phoneLink}`}
                       className="hover:text-[var(--color-accent)]"
                     >
                       {contact.phone}
-                    </a>
+                    </Link>
                   </p>
+
+                  {/* WhatsApp */}
                   <p className="flex items-center gap-3">
                     <span
                       className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[var(--color-accent)] shadow-sm shadow-slate-200/60"
@@ -109,15 +118,17 @@ export function ContactSection() {
                         />
                       </svg>
                     </span>
-                    <a
+                    <Link
                       href={contact.whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-[var(--color-accent)]"
                     >
                       {contact.whatsapp}
-                    </a>
+                    </Link>
                   </p>
+
+                  {/* Email */}
                   <p className="flex items-center gap-3">
                     <span
                       className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-[var(--color-accent)] shadow-sm shadow-slate-200/60"
@@ -142,22 +153,23 @@ export function ContactSection() {
                         />
                       </svg>
                     </span>
-                    <a
+                    <Link
                       href={`mailto:${contact.email}`}
                       className="break-all hover:text-[var(--color-accent)] sm:break-normal"
                     >
                       {contact.email}
-                    </a>
+                    </Link>
                   </p>
                 </div>
 
+                {/* Social Links */}
                 <div className="space-y-4 pt-4">
                   <p className="font-mono text-sm uppercase tracking-[0.3em] text-slate-500">
                     Find Me In
                   </p>
                   <div className="flex flex-wrap gap-4">
-                    {findMeLinks.map((link) => (
-                      <a
+                    {socialLinks.map((link) => (
+                      <Link
                         key={link.label}
                         href={link.href}
                         target={
@@ -171,81 +183,15 @@ export function ContactSection() {
                         className="button-hover-panel find-me-icon inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white/80 shadow-sm shadow-slate-200/60"
                         aria-label={link.label}
                       >
-                        {link.label === "GitHub" ? (
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            className="h-6 w-6"
-                          >
-                            <path
-                              d="M12 4.5C7.86 4.5 4.5 7.86 4.5 12C4.5 15.31 6.64 18.12 9.61 19.11C9.99 19.17 10.13 18.95 10.13 18.76V17.45C8 17.9 7.56 16.56 7.56 16.56C7.22 15.68 6.72 15.45 6.72 15.45C6.04 15 6.77 15.01 6.77 15.01C7.52 15.06 7.91 15.79 7.91 15.79C8.58 16.91 9.67 16.58 10.1 16.39C10.17 15.92 10.37 15.6 10.59 15.41C8.89 15.23 7.1 14.58 7.1 11.68C7.1 10.85 7.4 10.17 7.9 9.64C7.82 9.45 7.57 8.67 7.97 7.62C7.97 7.62 8.6 7.43 10.12 8.42C10.72 8.26 11.37 8.18 12 8.18C12.63 8.18 13.28 8.26 13.88 8.42C15.4 7.43 16.03 7.62 16.03 7.62C16.43 8.67 16.18 9.45 16.1 9.64C16.6 10.17 16.9 10.85 16.9 11.68C16.9 14.59 15.1 15.22 13.39 15.4C13.68 15.65 13.94 16.13 13.94 16.86V18.76C13.94 18.95 14.08 19.17 14.47 19.11C17.43 18.12 19.57 15.31 19.57 12C19.57 7.86 16.21 4.5 12 4.5Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        ) : null}
-                        {link.label === "LinkedIn" ? (
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            className="h-6 w-6"
-                          >
-                            <path
-                              d="M6.6 8.2C7.68 8.2 8.55 7.33 8.55 6.25C8.55 5.17 7.68 4.3 6.6 4.3C5.52 4.3 4.65 5.17 4.65 6.25C4.65 7.33 5.52 8.2 6.6 8.2Z"
-                              fill="currentColor"
-                            />
-                            <path
-                              d="M5 9.6H8.15V19.6H5V9.6Z"
-                              fill="currentColor"
-                            />
-                            <path
-                              d="M10.2 9.6H13.22V10.97H13.26C13.68 10.17 14.71 9.33 16.25 9.33C19.45 9.33 20.05 11.3 20.05 13.87V19.6H16.9V14.52C16.9 13.31 16.88 11.75 15.19 11.75C13.48 11.75 13.22 13.04 13.22 14.43V19.6H10.2V9.6Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        ) : null}
-                        {link.label === "Facebook" ? (
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            className="h-6 w-6"
-                          >
-                            <path
-                              d="M13.2 20V12.7H15.7L16.1 9.9H13.2V8.1C13.2 7.29 13.44 6.74 14.6 6.74H16.2V4.24C15.92 4.2 14.96 4.12 13.84 4.12C11.5 4.12 9.9 5.48 9.9 8V9.9H7.5V12.7H9.9V20H13.2Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        ) : null}
-                        {link.label === "Email" ? (
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            className="h-6 w-6"
-                          >
-                            <path
-                              d="M4 7.5L12 13.25L20 7.5"
-                              stroke="currentColor"
-                              strokeWidth="1.8"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                            <rect
-                              x="3.5"
-                              y="5.5"
-                              width="17"
-                              height="13"
-                              rx="3"
-                              stroke="currentColor"
-                              strokeWidth="1.8"
-                            />
-                          </svg>
-                        ) : null}
-                      </a>
+                        <SocialIcon label={link.label as ContactIconType} />
+                      </Link>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* Contact Form */}
             <div className="contact-form-shell flex h-full flex-col rounded-[2.2rem] border p-4 sm:p-6">
               <div className="mb-5">
                 <p className="contact-label font-mono text-xs uppercase tracking-[0.3em]">
