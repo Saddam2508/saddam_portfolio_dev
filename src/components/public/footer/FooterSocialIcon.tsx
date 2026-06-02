@@ -1,18 +1,11 @@
-import Image from "next/image";
-import { profile, socialLinks } from "@/data/portfolio";
+import { FooterSocialIconType } from "./footerTypes";
 
-const footerLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
-  { label: "Activities", href: "#practice" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+type Props = {
+  label: string;
+};
 
-function SocialIcon({ label }) {
-  const normalized = label.toLowerCase();
+export function FooterSocialIcon({ label }: Props) {
+  const normalized = label.toLowerCase() as FooterSocialIconType;
 
   if (normalized === "facebook") {
     return (
@@ -96,58 +89,5 @@ function SocialIcon({ label }) {
         strokeLinecap="round"
       />
     </svg>
-  );
-}
-
-export default function SiteFooter() {
-  const year = new Date().getFullYear();
-
-  return (
-    <footer className="px-4 pb-10 pt-14 sm:px-6 lg:px-8">
-      <div className="footer-shell mx-auto max-w-7xl rounded-[2rem] px-5 py-8 sm:rounded-[2.5rem] sm:px-10 sm:py-10">
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-          {socialLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-social inline-flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-full"
-              aria-label={link.label}
-            >
-              <SocialIcon label={link.label} />
-            </a>
-          ))}
-        </div>
-
-        <div className="mt-8 flex justify-center sm:mt-10">
-          <div className="footer-logo flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28">
-            <Image
-              src="/favicon-logo.png"
-              alt={`${profile.name || "Nafiz Alam"} logo`}
-              width={112}
-              height={112}
-              className="h-[4.75rem] w-[4.75rem] object-contain sm:h-[5.75rem] sm:w-[5.75rem]"
-            />
-          </div>
-        </div>
-
-        <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:mt-10 sm:gap-x-8 sm:gap-y-4">
-          {footerLinks.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="footer-link text-base font-semibold sm:text-xl"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <p className="footer-copy mt-8 text-center text-sm sm:mt-10 sm:text-base">
-          &copy; {year} All rights reserved by {profile.name || "Nafiz Alam"}
-        </p>
-      </div>
-    </footer>
   );
 }
