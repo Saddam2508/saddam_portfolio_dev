@@ -1,7 +1,13 @@
 import ProjectGrid from "@/components/ui/project-grid";
 import { SectionHeading } from "../sectionHeading";
 import RevealSection from "@/components/ui/reveal-section";
-import { projects } from "@/data/portfolio";
+import { projects } from "@/data/projects";
+import { Project } from "@/data/portfolioTypes";
+
+type Props = {
+  projects: Project[];
+};
+
 export function ProjectsSection() {
   return (
     <section
