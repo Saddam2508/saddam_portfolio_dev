@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import HeroDesignation from "@/components/ui/hero-designation";
 import PortfolioStats from "@/components/ui/portfolio-stats";
 import { portfolioStats, profile, socialLinks } from "@/data/portfolio";
+
 export function Hero() {
   return (
     <section className="relative overflow-hidden px-4 pt-22 sm:px-6 sm:pt-28 lg:px-8 lg:pt-32">
@@ -33,20 +35,19 @@ export function Hero() {
             </div>
 
             <div className="hero-actions flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <a
-                className="button-hover-primary hero-primary-button inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold sm:w-auto"
+              <Link
                 href="#projects"
+                className="button-hover-primary hero-primary-button inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold sm:w-auto"
               >
                 View Projects
-              </a>
-              <a
-                className="button-hover-secondary inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white/85 px-6 py-3 text-sm font-semibold text-slate-900 sm:w-auto"
+              </Link>
+              <Link
                 href="#contact"
+                className="button-hover-secondary inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white/85 px-6 py-3 text-sm font-semibold text-slate-900 sm:w-auto"
               >
                 Contact Me
-              </a>
-              <a
-                className="button-hover-soft inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white/85 px-6 py-3 text-sm font-semibold text-slate-900 sm:w-auto"
+              </Link>
+              <Link
                 href={profile.resumeUrl}
                 target={
                   profile.resumeUrl.startsWith("http") ? "_blank" : undefined
@@ -56,14 +57,15 @@ export function Hero() {
                     ? "noopener noreferrer"
                     : undefined
                 }
+                className="button-hover-soft inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white/85 px-6 py-3 text-sm font-semibold text-slate-900 sm:w-auto"
               >
                 Download Resume
-              </a>
+              </Link>
             </div>
 
             <div className="hero-social flex flex-wrap gap-3">
               {socialLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
                   target="_blank"
@@ -77,7 +79,7 @@ export function Hero() {
                   >
                     {"->"}
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
 

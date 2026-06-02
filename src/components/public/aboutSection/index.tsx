@@ -3,26 +3,9 @@ import { SectionHeading } from "../sectionHeading";
 import { AboutIcon } from "../aboutMe/AboutIcon";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { profile } from "@/data/portfolio";
-export function AboutSection() {
-  const orbitIcons = [
-    [
-      { name: "React.js", icon: "react" },
-      { name: "Next.js", icon: "next" },
-      { name: "JavaScript", icon: "javascript" },
-    ],
-    [
-      { name: "Tailwind CSS", icon: "tailwind" },
-      { name: "Node.js", icon: "node" },
-      { name: "MongoDB", icon: "mongodb" },
-    ],
-    [
-      { name: "Express", icon: "express" },
-      { name: "GitHub", icon: "github" },
-      { name: "MySQL", icon: "mysql" },
-      { name: "Firebase", icon: "spark" },
-    ],
-  ];
+import { orbitIcons } from "./orbitIcons";
 
+export function AboutSection() {
   return (
     <section
       id="about"
