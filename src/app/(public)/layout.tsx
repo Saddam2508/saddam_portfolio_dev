@@ -1,3 +1,6 @@
+import dns from "node:dns";
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 import CustomCursor from "@/components/ui/CustomCursor";
 import IntroLoader from "@/components/ui/IntroLoader";
 import ScrollTopButton from "@/components/ui/ScrollTopButton";
