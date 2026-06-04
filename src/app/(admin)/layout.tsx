@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { ReactNode } from "react";
+import { AppSession } from "@/types/user.types";
 
 export const metadata = {
   title: "Admin Dashboard | Md Saddam Hossain",
@@ -28,14 +29,14 @@ interface AdminLayoutProps {
 
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+    headers: await headers() ,
+  }) as AppSession
 
   if (!session) {
     redirect("/login");
   }
 
-  if (session.user.role !== "admin") {
+  if (session.user .role !== "admin") {
     redirect("/");
   }
 

@@ -49,7 +49,7 @@ export default function IntroLoader() {
           <span className="intro-loader-progress-fill" />
         </div>
 
-        <p className="intro-loader-tagline">FRONTEND WEB DEVELOPER</p>
+        <p className="intro-loader-tagline">Full Stack Developer</p>
       </div>
     </div>
   );
