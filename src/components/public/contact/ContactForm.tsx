@@ -40,7 +40,7 @@ export default function ContactForm() {
             required
             autoComplete="name"
             className="contact-input rounded-2xl border px-4 py-3 text-sm outline-none transition"
-            placeholder="Nafiz Alam"
+            placeholder="Your name"
           />
         </label>
         <label className="grid gap-2">
